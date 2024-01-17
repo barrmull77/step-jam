@@ -1,0 +1,40 @@
+.cellContent {
+    background-color: #f3d911;
+}
+
+.cellInput:checked + .cellContent {
+    background-color: #ff0ac2;
+}
+
+.cellInput:focus-visible + .cellContent {
+    outline: solid 4px #90cdf4;
+    outline-offset: 2px;
+}
+
+.lampInput {
+    background-color: aqua;
+}
+
+.lampContent {
+    width: 14px;
+    height: 14px;
+    border-radius: 8px;
+    background-color: #ccc;
+    margin: 0 8px;
+}
+
+.lampInput:checked + .lampContent {
+    background-color: #ff5b06;
+}
+
+.hiddenInput {
+    border: 0px;
+    clip: rect(0px, 0px, 0px, 0px);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0px;
+    overflow: hidden;
+    white-space: nowrap;
+    position: absolute;
+}
