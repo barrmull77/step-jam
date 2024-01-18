@@ -3,7 +3,7 @@ import React, { useState,useEffect, useContext } from 'react'
 import * as Tone from "tone";
 import { v4 as uuidv4 } from 'uuid';
 import SequencerContainer from './sequencerContainer';
-import { SequencerContext, SequencerProvider } from '@/context/sequencerContext';
+import { SequencerContext, SequencerProvider, SequencerContextType } from '@/context/sequencerContext';
 
 // const SequencerContext = createContext({
 //     sequencerArray: '',
@@ -11,7 +11,7 @@ import { SequencerContext, SequencerProvider } from '@/context/sequencerContext'
 //   });
 
 const SequencerList = () => {
-    const {sequencerArray, setSequencerArray} = useContext(SequencerContext);
+    const {sequencerArray, setSequencerArray} = useContext<SequencerContextType>(SequencerContext);
 
     const [isPlaying, setIsPlaying] = useState(false);
 
@@ -98,7 +98,10 @@ const SequencerList = () => {
                 </div>
             </div>
             
-            { sequencerArray.length !== 0 && sequencerArray.map((sequencer) => (<SequencerContainer SequencerId={sequencer.id} key ={sequencer.id}/>))}
+            {sequencerArray.length !== 0 &&
+                sequencerArray.map((sequencer) => (
+                    <SequencerContainer key={sequencer.id} SequencerId={sequencer.id} />
+                ))}
             
         </div>
     )

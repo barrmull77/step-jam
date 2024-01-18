@@ -2,12 +2,12 @@
 // import { v4 as uuidv4 } from 'uuid';
 import React, { createContext, useContext, useState } from 'react';
 
-export type Sequence = {
-    id: number;
+export type SequenceType = {
+    id: number | string;
 };
-type SequencerContextType = {
-    sequencerArray: Sequence[];
-    setSequencerArray: React.Dispatch<React.SetStateAction<Sequence[]>>;
+export type SequencerContextType = {
+    sequencerArray: SequenceType[];
+    setSequencerArray: React.Dispatch<React.SetStateAction<SequenceType[]>>;
 };
 
 type SequencerProviderProps = {
@@ -37,9 +37,12 @@ type SequencerProviderProps = {
 // };
 
  
-export const SequencerContext = createContext<SequencerContextType | undefined>(undefined);
+export const SequencerContext = createContext<SequencerContextType>({
+        sequencerArray: [],
+        setSequencerArray: () => {},
+    });
 export const SequencerProvider: React.FC<SequencerProviderProps> = ({ children }) => {
-  const [sequencerArray, setSequencerArray] = useState<Sequence[]>([]);
+  const [sequencerArray, setSequencerArray] = useState<SequenceType[]>([]);
  
     return (
         <SequencerContext.Provider value={{ sequencerArray, setSequencerArray }}>

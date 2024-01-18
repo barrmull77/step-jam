@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from 'react'
-import { SequencerContext } from '../context/sequencerContext';
+import { SequencerContext, SequencerContextType } from '../context/sequencerContext';
 import styles from './sequencer.module.css'
 import * as Tone from "tone";
 
@@ -11,14 +11,13 @@ type Track = {
 };
 
 type Props = {
-  id: string
+  id: string | number
   notes: Array<string | number>;
   numOfSteps?: number;
-  tune: any
 };
 
-const Sequencer = ({ id, notes, numOfSteps = 16, tune }: Props) => {
-    const {sequencerArray, setSequencerArray} = useContext(SequencerContext);
+const Sequencer = ({ id, notes, numOfSteps = 16, }: Props) => {
+    const {sequencerArray, setSequencerArray} = useContext<SequencerContextType>(SequencerContext);
     
     const [isPlaying, setIsPlaying] = useState(false);
 
@@ -63,7 +62,6 @@ const Sequencer = ({ id, notes, numOfSteps = 16, tune }: Props) => {
                 // const midi = 69 + 12*Math.log(note/440)/Math.log(2)
   
                 // synth.triggerAttackRelease('C4', '16n');
-                // console.log('tune--3',midi-tune.scale.length)
                 // // Detune each piano sample 
                 // pitchShift.pitch = tune.note(midi-tune.scale.length);
                 
@@ -110,6 +108,7 @@ const Sequencer = ({ id, notes, numOfSteps = 16, tune }: Props) => {
                     <div key={trackId} className='grid grid-cols-16 gap-1 rounded-lg text-center font-mono text-sm font-bold leading-6 text-white cellRows' >
                         {stepIds.map((stepId) => {
                             const id = trackId + "-" + stepId;
+                            const trackIndex = Number(trackId);
                             return (
                                 <label key={id} className='cell'>
                                     <input
@@ -118,10 +117,10 @@ const Sequencer = ({ id, notes, numOfSteps = 16, tune }: Props) => {
                                         ref={(elm) => {
                                   
                                             if (!elm) return;
-                                            if (!stepsRef.current[trackId]) {
-                                              stepsRef.current[trackId] = [];
+                                            if (!stepsRef.current[trackIndex]) {
+                                              stepsRef.current[trackIndex] = [];
                                             }
-                                            stepsRef.current[trackId][stepId] = elm;
+                                            stepsRef.current[trackIndex][stepId] = elm;
                                         }}
                                         className={`${styles.hiddenInput} ${styles.cellInput}`}
                                     />
