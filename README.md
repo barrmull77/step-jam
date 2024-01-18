@@ -1,3 +1,11 @@
+## Step jam
+
+This is an app that allows the user to create multiple musical sequences using microtonal tunings.
+It was built using the TuneJs library and Tone.js.
+
+It is currently deployed via Netlify to this site:
+https://65a908ddd4be146da79f2f46--astonishing-cupcake-e57513.netlify.app/
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
